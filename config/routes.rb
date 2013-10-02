@@ -1,8 +1,8 @@
 Treebook::Application.routes.draw do
-  devise_for :users
+  devise_for :users #devise gem option
 
-  resources :statuses
-  root :to => 'statuses#index'
+  resources :statuses #declares and creates routes for statuses
+  root :to => 'statuses#index' 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
