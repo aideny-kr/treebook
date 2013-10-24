@@ -20,8 +20,14 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'unicorn'
 gem 'jquery-rails'
-
+gem "omniauth"
+gem 'omniauth-twitter'
+gem 'omniauth-facebook', '1.4.0'
+gem 'twitter'
+gem 'foreman'
+gem "koala", "~> 1.7.0rc1"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

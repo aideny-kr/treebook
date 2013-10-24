@@ -1,15 +1,23 @@
 Treebook::Application.routes.draw do
+  get "authentications/index"
+
   devise_for :users #devise gem option
 
   devise_scope :user do 
-    get 'register', to: 'devise/registrations#new', as: :register
+    #setting custom routes for devise
+    get 'register', to: 'devise/registrations#new', as: :register 
     get 'login', to: 'devise/sessions#new', as: :login
     get 'logout', to: 'devise/sessions#destroy', as: :logout
   end
 
   resources :statuses #declares and creates routes for statuses
-  get 'feed', to: 'statuses#index', as: :feed
+  get 'feed', to: 'statuses#index', as: :feed #custom routes for status index
   root :to => 'statuses#index' 
+
+  resources :authentications
+
+  match 'auth/:provider/callback', to: 'authentications#create', via: [:get, :post]
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
