@@ -16,9 +16,17 @@ class Authentication < ActiveRecord::Base
       authentication.uid = auth.uid
       authentication.name = auth.info.name
       authentication.oauth_token = auth.credentials.token
-      authentication.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      authentication.oauth_token_secret = auth.credentials.secret
+      if auth.credentials.expires_at
+        authentication.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      end
       authentication.save!
     end
+  end
+
+  def self.find_by_oauth_hash(oauth_hash)
+    Authentication.where(provider: oauth_hash[:provider]).
+      where(uid: oauth_hash[:uid]).first
   end
 
 end

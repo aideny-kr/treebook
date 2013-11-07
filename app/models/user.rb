@@ -24,4 +24,7 @@ class User < ActiveRecord::Base
   def full_name
   	first_name + " " + last_name
   end
+  def twitter_client
+    authentications.where(provider: "twitter").first.twitter_client
+  end
 end
