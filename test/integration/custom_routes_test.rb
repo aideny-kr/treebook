@@ -17,4 +17,9 @@ class CustomRoutesTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "that /profile route opens the profile page" do
+    get 'huichan'
+    assert_response :success
+  end
+
 end
